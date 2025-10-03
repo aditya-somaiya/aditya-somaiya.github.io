@@ -1,0 +1,47 @@
+/* Minimal, clean, responsive portfolio styles */
+:root {
+  --bg: #0b0c0f;
+  --text: #e6e6e6;
+  --muted: #a1a1aa;
+  --card: #12131a;
+  --accent: #7cdeff;
+  --border: #1f2230;
+}
+
+* { box-sizing: border-box; }
+html, body { margin: 0; padding: 0; background: var(--bg); color: var(--text); font: 16px/1.6 system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, 'Helvetica Neue', sans-serif; }
+a { color: var(--accent); text-decoration: none; }
+.container { max-width: 960px; margin: 0 auto; padding: 0 1rem; }
+
+.nav { display: flex; justify-content: space-between; align-items: center; padding: 1rem 0; position: sticky; top: 0; background: linear-gradient(180deg, rgba(11,12,15,0.95), rgba(11,12,15,0)); backdrop-filter: blur(8px); }
+.brand { font-weight: 700; letter-spacing: 0.3px; }
+.links a { margin-left: 1rem; color: var(--muted); }
+.links a:hover { color: var(--text); }
+
+.hero { padding: 4rem 0 2rem; }
+.hero h1 { font-size: 2.5rem; margin: 0 0 0.5rem; }
+.accent { color: var(--accent); }
+.cta { margin: 1rem 0; }
+.btn { display: inline-block; border: 1px solid var(--accent); padding: 0.6rem 1rem; border-radius: 8px; margin-right: 0.5rem; }
+.btn.secondary { border-color: var(--border); }
+
+.grid { display: grid; grid-template-columns: repeat(auto-fit,minmax(240px,1fr)); gap: 1rem; }
+.card { background: var(--card); border: 1px solid var(--border); border-radius: 12px; padding: 1rem; }
+.card h3 { margin-top: 0; }
+
+.timeline { list-style: none; padding: 0; margin: 0; }
+.timeline li { border-left: 2px solid var(--border); padding-left: 1rem; margin-left: 0.5rem; position: relative; }
+.timeline li::before { content: ''; position: absolute; left: -6px; top: 6px; width: 10px; height: 10px; background: var(--accent); border-radius: 50%; }
+
+.posts { list-style: none; padding: 0; }
+.posts li { margin: 0.3rem 0; }
+
+form { display: grid; gap: 0.6rem; max-width: 540px; }
+input, textarea { width: 100%; padding: 0.6rem 0.7rem; border-radius: 8px; border: 1px solid var(--border); background: #0f1117; color: var(--text); }
+button { cursor: pointer; }
+
+footer { padding: 3rem 0; color: var(--muted); text-align: center; border-top: 1px solid var(--border); margin-top: 3rem; }
+
+@media (max-width: 480px) {
+  .hero h1 { font-size: 2rem; }
+}

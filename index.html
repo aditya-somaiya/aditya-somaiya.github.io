@@ -1,0 +1,110 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Your Name — Portfolio</title>
+  <meta name="description" content="Portfolio of Your Name — backend & distributed systems engineer.">
+  <meta property="og:title" content="Your Name — Portfolio">
+  <meta property="og:description" content="Backend • Distributed Systems • Data">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://yourname.github.io/">
+  <meta property="og:image" content="assets/img/og-card.png">
+  <link rel="icon" href="assets/img/favicon.svg">
+  <link rel="stylesheet" href="assets/css/styles.css">
+</head>
+<body>
+  <header class="container">
+    <nav class="nav">
+      <a class="brand" href="#">Your Name</a>
+      <div class="links">
+        <a href="#projects">Projects</a>
+        <a href="#experience">Experience</a>
+        <a href="#blog">Blog</a>
+        <a href="#contact">Contact</a>
+      </div>
+    </nav>
+    <section class="hero">
+      <h1>Hi, I'm <span class="accent">Your Name</span>.</h1>
+      <p>Backend & Distributed Systems engineer. I design reliable services, tune databases, and ship pragmatic solutions.</p>
+      <div class="cta">
+        <a class="btn" href="assets/Your_Name_Resume.pdf" target="_blank" rel="noreferrer">Resume</a>
+        <a class="btn secondary" href="#projects">View Projects</a>
+      </div>
+      <div class="social">
+        <a href="https://github.com/yourname">GitHub</a> ·
+        <a href="https://www.linkedin.com/in/yourname">LinkedIn</a> ·
+        <a href="mailto:you@example.com">Email</a>
+      </div>
+    </section>
+  </header>
+
+  <main class="container">
+    <section id="projects">
+      <h2>Featured Projects</h2>
+      <div class="grid">
+        <article class="card">
+          <h3>Distributed Banking (Go, Paxos)</h3>
+          <p>Fault‑tolerant replication with consensus; linearizable transfers; chaos testing.</p>
+          <div class="meta"><a href="https://github.com/yourname/dist-bank">Code</a> · <a href="#">Post</a></div>
+        </article>
+        <article class="card">
+          <h3>RMS Inventory Service (Spring Boot, Postgres)</h3>
+          <p>Reconciled room-night balances; optimized queries and timezone-safe APIs.</p>
+          <div class="meta"><a href="https://github.com/yourname/rms-inventory">Code</a></div>
+        </article>
+        <article class="card">
+          <h3>Real‑Time Chat (WebSockets, MERN)</h3>
+          <p>Global broadcast chat with analytics events and caching layer.</p>
+          <div class="meta"><a href="https://github.com/yourname/realtime-chat">Code</a></div>
+        </article>
+      </div>
+    </section>
+
+    <section id="experience">
+      <h2>Experience</h2>
+      <ul class="timeline">
+        <li>
+          <div>
+            <strong>Software Engineer Intern — Her Heard</strong>
+            <span>May–Aug 2024</span>
+            <p>Built WebSocket chat, GA4 funnels, and MongoDB indexing to speed queries ~10%.</p>
+          </div>
+        </li>
+        <li>
+          <div>
+            <strong>Software Engineer — LTIMindtree</strong>
+            <span>2021–2023</span>
+            <p>Modernized Marriott RMS microservices; added /inventory/balance; reduced SLA breaches.</p>
+          </div>
+        </li>
+      </ul>
+    </section>
+
+    <section id="blog">
+      <h2>Writing</h2>
+      <ul class="posts">
+        <li><a href="#">How I debug timezone bugs across microservices</a> <span>— 5 min read</span></li>
+        <li><a href="#">Choosing partitions & indexes in Postgres</a> <span>— 7 min read</span></li>
+      </ul>
+    </section>
+
+    <section id="contact">
+      <h2>Contact</h2>
+      <p>Say hi at <a href="mailto:you@example.com">you@example.com</a> or use the form:</p>
+      <form action="https://formspree.io/f/{your-id}" method="POST">
+        <label>Your email <input type="email" name="email" required></label>
+        <label>Message <textarea name="message" rows="5" required></textarea></label>
+        <button type="submit" class="btn">Send</button>
+      </form>
+    </section>
+  </main>
+
+  <footer class="container">
+    <small>© <span id="year"></span> Your Name. Built with GitHub Pages.</small>
+  </footer>
+
+  <script src="assets/js/main.js"></script>
+  <!-- Optional: Google Analytics / Plausible snippet goes here -->
+</body>
+</html>
