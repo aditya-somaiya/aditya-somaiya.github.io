@@ -194,10 +194,10 @@ const SLIDES = [
   // Put repo names you want highlighted here (exact names as on GitHub):
   const FEATURED = [
     // Examples (uncomment/edit to pin):
-    // 'SmartHome-Savant-LLM',
-    // 'world-happiness-dashboard',
-    // 'RestaurantFinder',
-    // 'Mouse-Control-using-Hand-Gestures'
+    'SmartHome-Savant-LLM',
+    'world-happiness-dashboard',
+    'RestaurantFinder',
+    'Mouse-Control-using-Hand-Gestures'
   ];
 
   const featuredGrid = document.getElementById('featuredGrid');
