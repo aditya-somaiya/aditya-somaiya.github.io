@@ -55,32 +55,46 @@ document.querySelectorAll('a[href^="#"]').forEach(a => {
 })();
 
 /**********************
- * CONTACT FORM (Formspree inline success)
+ * CONTACT FORM (Formspree inline success, no redirect)
  **********************/
-(() => {
+document.addEventListener('DOMContentLoaded', () => {
   const form = document.getElementById('contactForm');
   const successBox = document.getElementById('formSuccess');
   const sendAgainBtn = document.getElementById('sendAgain');
+
   if (!form || !successBox || !sendAgainBtn) return;
 
-  form.addEventListener('submit', async e => {
-    e.preventDefault();
-    const data = new FormData(form);
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault(); // stop browser navigation
+
+    // Optional: disable button to prevent double-submits
+    const submitBtn = form.querySelector('button[type="submit"]');
+    if (submitBtn) submitBtn.disabled = true;
+
     try {
       const res = await fetch(form.action, {
-        method: form.method,
-        body: data,
-        headers: { Accept: 'application/json' }
+        method: form.method || 'POST',
+        body: new FormData(form),
+        headers: { 'Accept': 'application/json' } // key: tells Formspree to return JSON (no redirect)
       });
+
       if (res.ok) {
         form.style.display = 'none';
         successBox.style.display = 'block';
         form.reset();
       } else {
+        // If Formspree returns validation errors, try to read them:
+        try {
+          const data = await res.json();
+          console.error('Formspree error:', data);
+        } catch (_) {}
         alert('Oops, something went wrong. Please try again later.');
       }
     } catch (err) {
+      console.error(err);
       alert('Network error. Please check your connection.');
+    } finally {
+      if (submitBtn) submitBtn.disabled = false;
     }
   });
 
@@ -88,7 +102,8 @@ document.querySelectorAll('a[href^="#"]').forEach(a => {
     successBox.style.display = 'none';
     form.style.display = 'block';
   });
-})();
+});
+
 
 /**********************
  * SLIDESHOW with “peek”
