@@ -1,87 +1,154 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Your Name — Portfolio</title>
-  <meta name="description" content="Portfolio of Your Name — backend & distributed systems engineer.">
-  <meta property="og:title" content="Your Name — Portfolio">
-  <meta property="og:description" content="Backend • Distributed Systems • Data">
-  <meta property="og:type" content="website">
-  <meta property="og:url" content="https://yourname.github.io/">
-  <meta property="og:image" content="assets/img/og-card.png">
-  <link rel="icon" href="assets/img/favicon.svg">
-  <link rel="stylesheet" href="assets/css/styles.css">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Aditya Somaiya — Portfolio</title>
+  <meta name="description" content="Portfolio of Aditya Somaiya — backend & full-stack engineer (Python, JS). Distributed systems, data, and pragmatic shipping." />
+  <meta property="og:title" content="Aditya Somaiya — Portfolio" />
+  <meta property="og:description" content="Backend • Distributed Systems • Data" />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://aditya-somaiya.github.io/" />
+  <meta property="og:image" content="assets/img/og-card.png" />
+  <link rel="icon" href="assets/img/favicon.svg" />
+  <link rel="stylesheet" href="assets/css/styles.css" />
+  <style>
+    /* --- Small interactive polish --- */
+    :root { --accent-2: #a7f3d0; }
+    .links a { position: relative; }
+    .links a::after { content: ""; position: absolute; left: 0; bottom: -2px; width: 0; height: 1px; background: var(--accent); transition: width .25s ease; }
+    .links a:hover::after { width: 100%; }
+
+    /* theme toggle */
+    .toggle {
+      border: 1px solid var(--border); border-radius: 999px; padding: .35rem .6rem; font-size: .9rem; cursor: pointer; margin-left: .75rem;
+      background: linear-gradient(180deg, rgba(255,255,255,.02), rgba(0,0,0,.2));
+    }
+
+    /* reveal on scroll */
+    .reveal { opacity: 0; transform: translateY(12px); transition: opacity .5s ease, transform .5s ease; }
+    .reveal.visible { opacity: 1; transform: none; }
+
+    /* project tags */
+    .tag { display:inline-block; font-size:.75rem; padding:.15rem .45rem; border:1px solid var(--border); border-radius:999px; margin-right:.4rem; color:var(--muted);}
+    .card .meta a { border-bottom: 1px dotted var(--accent); }
+  </style>
 </head>
 <body>
   <header class="container">
     <nav class="nav">
-      <a class="brand" href="#">Your Name</a>
+      <a class="brand" href="#">Aditya Somaiya</a>
       <div class="links">
         <a href="#projects">Projects</a>
         <a href="#experience">Experience</a>
-        <a href="#blog">Blog</a>
+        <a href="#blog">Writing</a>
         <a href="#contact">Contact</a>
+        <button id="themeToggle" class="toggle" aria-label="Toggle theme">🌗</button>
       </div>
     </nav>
-    <section class="hero">
+
+    <section class="hero reveal">
       <h1>Hi, I'm <span class="accent">Aditya Somaiya</span>.</h1>
-      <p>Full Stack Engineer. I design reliable services, user interfaces, tune databases, and ship pragmatic solutions.</p>
+      <p>Full-stack & backend engineer (Python/JS). I design reliable services, build clean UIs, tune databases, and ship pragmatic solutions.</p>
+      <ul>
+        <li>MS CS @ Stony Brook (GPA ~3.97). Focus: distributed systems, algorithms, data. </li>
+        <li>Her Heard (MERN + WebSockets + GA4): Real-time chat, analytics funnels, MongoDB tuning.</li>
+        <li>LTIMindtree → Marriott RMS: Spring Boot microservices, Postgres, /inventory/balance endpoint, query optimizations, timezone-safe APIs.</li>
+      </ul>
       <div class="cta">
-        <a class="btn" href="assets/Your_Name_Resume.pdf" target="_blank" rel="noreferrer">Resume</a>
+        <!-- Put your real PDF at assets/Aditya_Somaiya_Resume.pdf -->
+        <a class="btn" href="assets/Aditya_Somaiya_Resume.pdf" target="_blank" rel="noreferrer">Resume</a>
         <a class="btn secondary" href="#projects">View Projects</a>
       </div>
       <div class="social">
         <a href="https://github.com/aditya-somaiya">GitHub</a> ·
         <a href="https://www.linkedin.com/in/aditya-somaiya">LinkedIn</a> ·
-        <a href="mailto:adisomaiya.sa@gmail.com">Email</a>
+        <a id="emailLink" href="mailto:adisomaiya.sa@gmail.com">Email</a>
+        <button id="copyEmail" class="toggle" style="margin-left:.5rem">Copy</button>
       </div>
     </section>
   </header>
 
   <main class="container">
-    <section id="projects">
+    <section id="projects" class="reveal">
       <h2>Featured Projects</h2>
       <div class="grid">
         <article class="card">
-          <h3>Distributed Banking (Go, Paxos)</h3>
-          <p>Fault‑tolerant replication with consensus; linearizable transfers; chaos testing.</p>
-          <div class="meta"><a href="https://github.com/yourname/dist-bank">Code</a> · <a href="#">Post</a></div>
+          <h3>SmartHome Savant — LLM + ML</h3>
+          <p>Energy anomaly detection with LightGBM + SHAP, multimodal inputs, and LLM-assisted routines. Includes FAISS, forecasting, and explainability artifacts.</p>
+          <p>
+            <span class="tag">Python</span><span class="tag">LightGBM</span><span class="tag">SHAP</span><span class="tag">FAISS</span>
+          </p>
+          <div class="meta">
+            <a href="https://github.com/aditya-somaiya/SmartHome-Savant-LLM" target="_blank" rel="noreferrer">Code</a>
+          </div>
         </article>
+
         <article class="card">
-          <h3>RMS Inventory Service (Spring Boot, Postgres)</h3>
-          <p>Reconciled room-night balances; optimized queries and timezone-safe APIs.</p>
-          <div class="meta"><a href="https://github.com/yourname/rms-inventory">Code</a></div>
+          <h3>World Happiness Dashboard</h3>
+          <p>Client/server dashboard experiment—data exploration and simple visualizations.</p>
+          <p>
+            <span class="tag">JS</span><span class="tag">Node</span>
+          </p>
+          <div class="meta">
+            <a href="https://github.com/aditya-somaiya/world-happiness-dashboard" target="_blank" rel="noreferrer">Code</a>
+          </div>
         </article>
+
         <article class="card">
-          <h3>Real‑Time Chat (WebSockets, MERN)</h3>
-          <p>Global broadcast chat with analytics events and caching layer.</p>
-          <div class="meta"><a href="https://github.com/yourname/realtime-chat">Code</a></div>
+          <h3>RestaurantFinder</h3>
+          <p>Course project in Java: basic search, filters, and data ingestion pipeline.</p>
+          <p>
+            <span class="tag">Java</span>
+          </p>
+          <div class="meta">
+            <a href="https://github.com/aditya-somaiya/RestaurantFinder" target="_blank" rel="noreferrer">Code</a>
+          </div>
+        </article>
+
+        <article class="card">
+          <h3>Mouse Control via Hand Gestures</h3>
+          <p>Computer-vision based gesture control prototype.</p>
+          <p>
+            <span class="tag">Python</span><span class="tag">OpenCV</span>
+          </p>
+          <div class="meta">
+            <a href="https://github.com/aditya-somaiya/Mouse-Control-using-Hand-Gestures" target="_blank" rel="noreferrer">Code</a>
+          </div>
+        </article>
+
+        <!-- Keep a link to the rest -->
+        <article class="card">
+          <h3>See all repositories</h3>
+          <p>More experiments, coursework, and utilities.</p>
+          <div class="meta">
+            <a href="https://github.com/aditya-somaiya?tab=repositories" target="_blank" rel="noreferrer">Browse all</a>
+          </div>
         </article>
       </div>
     </section>
 
-    <section id="experience">
+    <section id="experience" class="reveal">
       <h2>Experience</h2>
       <ul class="timeline">
         <li>
           <div>
             <strong>Software Engineer Intern — Her Heard</strong>
             <span>May–Aug 2024</span>
-            <p>Built WebSocket chat, GA4 funnels, and MongoDB indexing to speed queries ~10%.</p>
+            <p>Built WebSocket chat (global broadcast), GA4 custom event funnels, and MongoDB indexing/caching that improved query speed ~10% and increased engagement ~12% (pilot scale).</p>
           </div>
         </li>
         <li>
           <div>
-            <strong>Software Engineer — LTIMindtree</strong>
+            <strong>Software Engineer — LTIMindtree (Marriott RMS)</strong>
             <span>2021–2023</span>
-            <p>Modernized Marriott RMS microservices; added /inventory/balance; reduced SLA breaches.</p>
+            <p>Modernized RMS microservices (Spring Boot + Postgres). Implemented <code>/inventory/balance</code>, fixed timezone issues, optimized queries, and reduced SLA breaches through proactive debugging across services.</p>
           </div>
         </li>
       </ul>
     </section>
 
-    <section id="blog">
+    <section id="blog" class="reveal">
       <h2>Writing</h2>
       <ul class="posts">
         <li><a href="#">How I debug timezone bugs across microservices</a> <span>— 5 min read</span></li>
@@ -89,22 +156,88 @@
       </ul>
     </section>
 
-    <section id="contact">
-      <h2>Contact</h2>
-      <p>Say hi at <a href="mailto:you@example.com">you@example.com</a> or use the form:</p>
-      <form action="https://formspree.io/f/{your-id}" method="POST">
-        <label>Your email <input type="email" name="email" required></label>
-        <label>Message <textarea name="message" rows="5" required></textarea></label>
-        <button type="submit" class="btn">Send</button>
-      </form>
-    </section>
+    <section id="contact" class="reveal">
+  <h2>Contact</h2>
+  <p>Say hi at <a href="mailto:adisomaiya.sa@gmail.com">adisomaiya.sa@gmail.com</a> or use the form:</p>
+  
+  <form id="contactForm" action="https://formspree.io/f/mnqewxyz" method="POST">
+    <label>Your email <input type="email" name="email" required></label>
+    <label>Message <textarea name="message" rows="5" required></textarea></label>
+    <button type="submit" class="btn">Send</button>
+  </form>
+
+  <!-- confirmation box (hidden until submit) -->
+  <div id="formSuccess" style="display:none; margin-top:1rem;">
+    <p>✅ Your message has been sent successfully!</p>
+    <button id="sendAgain" class="btn secondary">Send another message</button>
+  </div>
+</section>
+
   </main>
 
   <footer class="container">
-    <small>© <span id="year"></span> Your Name. Built with GitHub Pages.</small>
+    <small>© <span id="year"></span> Aditya Somaiya. Built with GitHub Pages.</small>
   </footer>
 
   <script src="assets/js/main.js"></script>
-  <!-- Optional: Google Analytics / Plausible snippet goes here -->
+  <script>
+    // theme toggle (persists in localStorage)
+    const root = document.documentElement;
+    const key = 'theme';
+    const saved = localStorage.getItem(key);
+    if (saved === 'light') root.classList.add('light');
+    document.getElementById('themeToggle').onclick = () => {
+      root.classList.toggle('light');
+      localStorage.setItem(key, root.classList.contains('light') ? 'light' : 'dark');
+    };
+
+    // copy email
+    const copyBtn = document.getElementById('copyEmail');
+    copyBtn.addEventListener('click', async () => {
+      await navigator.clipboard.writeText('adisomaiya.sa@gmail.com');
+      copyBtn.textContent = 'Copied!';
+      setTimeout(() => copyBtn.textContent = 'Copy', 1200);
+    });
+
+    // reveal on scroll
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+    }, { threshold: .08 });
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+  </script>
+  <script>
+  const form = document.getElementById('contactForm');
+  const successBox = document.getElementById('formSuccess');
+  const sendAgainBtn = document.getElementById('sendAgain');
+
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault(); // prevent default page reload
+    const data = new FormData(form);
+
+    try {
+      const res = await fetch(form.action, {
+        method: form.method,
+        body: data,
+        headers: { 'Accept': 'application/json' }
+      });
+
+      if (res.ok) {
+        form.style.display = 'none';
+        successBox.style.display = 'block';
+        form.reset();
+      } else {
+        alert("Oops, something went wrong. Please try again later.");
+      }
+    } catch (err) {
+      alert("Network error. Please check your connection.");
+    }
+  });
+
+  sendAgainBtn.addEventListener('click', () => {
+    successBox.style.display = 'none';
+    form.style.display = 'block';
+  });
+</script>
+
 </body>
 </html>
