@@ -6,45 +6,117 @@
   --card: #12131a;
   --accent: #7cdeff;
   --border: #1f2230;
+  --input-bg: #0f1117;
+}
+
+/* Light theme overrides (toggled by adding .light to <html>) */
+.light {
+  --bg: #ffffff;
+  --text: #0b0c0f;
+  --muted: #475569;      /* slate-600-ish */
+  --card: #f8fafc;       /* slate-50 */
+  --accent: #0ea5e9;     /* sky-500 */
+  --border: #e2e8f0;     /* slate-200 */
+  --input-bg: #ffffff;
 }
 
 * { box-sizing: border-box; }
-html, body { margin: 0; padding: 0; background: var(--bg); color: var(--text); font: 16px/1.6 system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, 'Helvetica Neue', sans-serif; }
+html, body {
+  margin: 0; padding: 0;
+  background: var(--bg); color: var(--text);
+  font: 16px/1.6 system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, 'Helvetica Neue', sans-serif;
+}
 a { color: var(--accent); text-decoration: none; }
 .container { max-width: 960px; margin: 0 auto; padding: 0 1rem; }
 
-.nav { display: flex; justify-content: space-between; align-items: center; padding: 1rem 0; position: sticky; top: 0; background: linear-gradient(180deg, rgba(11,12,15,0.95), rgba(11,12,15,0)); backdrop-filter: blur(8px); }
+/* Top nav */
+.nav {
+  display: flex; justify-content: space-between; align-items: center;
+  padding: 1rem 0; position: sticky; top: 0; z-index: 100;
+  background: linear-gradient(180deg, rgba(11,12,15,0.95), rgba(11,12,15,0));
+  backdrop-filter: blur(8px);
+}
+.light .nav {
+  background: linear-gradient(180deg, rgba(255,255,255,0.85), rgba(255,255,255,0));
+  backdrop-filter: blur(8px);
+}
 .brand { font-weight: 700; letter-spacing: 0.3px; }
 .links a { margin-left: 1rem; color: var(--muted); }
 .links a:hover { color: var(--text); }
 
+/* nav hover underline micro-interaction */
+.links a { position: relative; }
+.links a::after {
+  content: ""; position: absolute; left: 0; bottom: -2px; width: 0; height: 1px;
+  background: var(--accent); transition: width .25s ease;
+}
+.links a:hover::after { width: 100%; }
+
+/* Theme toggle button */
+.toggle {
+  border: 1px solid var(--border); border-radius: 999px;
+  padding: .35rem .6rem; font-size: .9rem; cursor: pointer; margin-left: .75rem;
+  background: linear-gradient(180deg, rgba(255,255,255,.02), rgba(0,0,0,.2));
+  color: var(--text);
+}
+.toggle:focus-visible, .btn:focus-visible, a:focus-visible, input:focus-visible, textarea:focus-visible {
+  outline: 2px solid var(--accent); outline-offset: 2px;
+}
+
+/* Hero */
 .hero { padding: 4rem 0 2rem; }
 .hero h1 { font-size: 2.5rem; margin: 0 0 0.5rem; }
 .accent { color: var(--accent); }
 .cta { margin: 1rem 0; }
-.btn { display: inline-block; border: 1px solid var(--accent); padding: 0.6rem 1rem; border-radius: 8px; margin-right: 0.5rem; }
+
+.btn {
+  display: inline-block; border: 1px solid var(--accent);
+  padding: 0.6rem 1rem; border-radius: 8px; margin-right: 0.5rem;
+  transition: transform .12s ease, background-color .12s ease, border-color .12s ease;
+}
+.btn:hover { transform: translateY(-1px); }
 .btn.secondary { border-color: var(--border); }
 
-.grid { display: grid; grid-template-columns: repeat(auto-fit,minmax(240px,1fr)); gap: 1rem; }
+/* Cards & grids */
+.grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px,1fr)); gap: 1rem; }
+.projects-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px,1fr)); gap: 1rem; }
 .card { background: var(--card); border: 1px solid var(--border); border-radius: 12px; padding: 1rem; }
-.card h3 { margin-top: 0; }
+.card h3 { margin-top: 0; display:flex; align-items:center; justify-content:space-between; gap:.5rem; }
+.card .meta a { border-bottom: 1px dotted var(--accent); }
+.stat { font-size:.8rem; color: var(--muted); }
+.lang { font-size:.75rem; color: var(--muted); }
+.muted { color: var(--muted); }
 
+/* Timeline */
 .timeline { list-style: none; padding: 0; margin: 0; }
 .timeline li { border-left: 2px solid var(--border); padding-left: 1rem; margin-left: 0.5rem; position: relative; }
-.timeline li::before { content: ''; position: absolute; left: -6px; top: 6px; width: 10px; height: 10px; background: var(--accent); border-radius: 50%; }
+.timeline li::before {
+  content: ''; position: absolute; left: -6px; top: 6px;
+  width: 10px; height: 10px; background: var(--accent); border-radius: 50%;
+}
 
+/* Posts list */
 .posts { list-style: none; padding: 0; }
 .posts li { margin: 0.3rem 0; }
 
+/* Forms */
 form { display: grid; gap: 0.6rem; max-width: 540px; }
-input, textarea { width: 100%; padding: 0.6rem 0.7rem; border-radius: 8px; border: 1px solid var(--border); background: #0f1117; color: var(--text); }
+input, textarea {
+  width: 100%; padding: 0.6rem 0.7rem; border-radius: 8px;
+  border: 1px solid var(--border); background: var(--input-bg); color: var(--text);
+}
 button { cursor: pointer; }
 
-footer { padding: 3rem 0; color: var(--muted); text-align: center; border-top: 1px solid var(--border); margin-top: 3rem; }
-
-@media (max-width: 480px) {
-  .hero h1 { font-size: 2rem; }
+/* Footer */
+footer {
+  padding: 3rem 0; color: var(--muted); text-align: center;
+  border-top: 1px solid var(--border); margin-top: 3rem;
 }
+
+/* Reveal-on-scroll */
+.reveal { opacity: 0; transform: translateY(12px); transition: opacity .5s ease, transform .5s ease; }
+.reveal.visible { opacity: 1; transform: none; }
+
 /* ---------- Intro + Slideshow ---------- */
 .intro-wrap {
   display: grid;
@@ -68,6 +140,7 @@ footer { padding: 3rem 0; color: var(--muted); text-align: center; border-top: 1
   background: #0f1117;
   border: 1px solid var(--border);
 }
+.light .carousel { background: #ffffff; }
 .carousel .track {
   display: flex;
   gap: var(--peek);
@@ -111,6 +184,7 @@ footer { padding: 3rem 0; color: var(--muted); text-align: center; border-top: 1
   position: absolute; right: 12px; bottom: 8px; color: #d6d6d6; font-size: .8rem;
   background: rgba(0,0,0,.35); padding: .25rem .5rem; border-radius: 6px;
 }
+.light .carousel .caption { color: #1f2937; background: rgba(255,255,255,.6); }
 
 /* Intro card */
 .intro-card {
@@ -122,3 +196,12 @@ footer { padding: 3rem 0; color: var(--muted); text-align: center; border-top: 1
 .intro-card h2 { margin-top: 0; }
 .intro-card ul { margin: .75rem 0 1rem; padding-left: 1.1rem; }
 .intro-cta .btn { margin-right: .5rem; }
+
+/* Small tweaks */
+code { background: rgba(127,127,127,.15); padding: .1rem .3rem; border-radius: 6px; }
+img { max-width: 100%; height: auto; }
+
+/* Mobile adjustments */
+@media (max-width: 480px) {
+  .hero h1 { font-size: 2rem; }
+}

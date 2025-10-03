@@ -12,33 +12,13 @@
   <meta property="og:image" content="assets/img/og-card.png" />
   <link rel="icon" href="assets/img/favicon.svg" />
   <link rel="stylesheet" href="assets/css/styles.css" />
-  <style>
-    /* --- Small interactive polish --- */
-    :root { --accent-2: #a7f3d0; }
-    .links a { position: relative; }
-    .links a::after { content: ""; position: absolute; left: 0; bottom: -2px; width: 0; height: 1px; background: var(--accent); transition: width .25s ease; }
-    .links a:hover::after { width: 100%; }
-
-    /* theme toggle */
-    .toggle {
-      border: 1px solid var(--border); border-radius: 999px; padding: .35rem .6rem; font-size: .9rem; cursor: pointer; margin-left: .75rem;
-      background: linear-gradient(180deg, rgba(255,255,255,.02), rgba(0,0,0,.2));
-    }
-
-    /* reveal on scroll */
-    .reveal { opacity: 0; transform: translateY(12px); transition: opacity .5s ease, transform .5s ease; }
-    .reveal.visible { opacity: 1; transform: none; }
-
-    /* project tags */
-    .tag { display:inline-block; font-size:.75rem; padding:.15rem .45rem; border:1px solid var(--border); border-radius:999px; margin-right:.4rem; color:var(--muted);}
-    .card .meta a { border-bottom: 1px dotted var(--accent); }
-  </style>
 </head>
 <body>
   <header class="container">
     <nav class="nav">
       <a class="brand" href="#">Aditya Somaiya</a>
       <div class="links">
+        <a href="#intro">Intro</a>
         <a href="#projects">Projects</a>
         <a href="#experience">Experience</a>
         <a href="#blog">Writing</a>
@@ -51,12 +31,11 @@
       <h1>Hi, I'm <span class="accent">Aditya Somaiya</span>.</h1>
       <p>Full-stack & backend engineer (Python/JS). I design reliable services, build clean UIs, tune databases, and ship pragmatic solutions.</p>
       <ul>
-        <li>MS CS @ Stony Brook (GPA ~3.97). Focus: distributed systems, algorithms, data. </li>
+        <li>MS CS @ Stony Brook (GPA ~3.97). Focus: distributed systems, algorithms, data.</li>
         <li>Her Heard (MERN + WebSockets + GA4): Real-time chat, analytics funnels, MongoDB tuning.</li>
-        <li>LTIMindtree → Marriott RMS: Spring Boot microservices, Postgres, /inventory/balance endpoint, query optimizations, timezone-safe APIs.</li>
+        <li>LTIMindtree → Marriott RMS: Spring Boot microservices, Postgres, <code>/inventory/balance</code>, query optimizations, timezone-safe APIs.</li>
       </ul>
       <div class="cta">
-        <!-- Put your real PDF at assets/Aditya_Somaiya_Resume.pdf -->
         <a class="btn" href="assets/Aditya_Somaiya_Resume.pdf" target="_blank" rel="noreferrer">Resume</a>
         <a class="btn secondary" href="#projects">View Projects</a>
       </div>
@@ -67,65 +46,57 @@
         <button id="copyEmail" class="toggle" style="margin-left:.5rem">Copy</button>
       </div>
     </section>
+
+    <!-- Intro + Slideshow -->
+    <section id="intro" class="container reveal">
+      <div class="intro-wrap">
+        <!-- Slideshow / collage with peek -->
+        <figure class="carousel" aria-label="Photo slideshow">
+          <div class="track no-js">
+            <img class="slide" src="assets/img/portrait.png" alt="Aditya Somaiya portrait" />
+          </div>
+          <button class="next-area" aria-label="Next image"></button>
+          <div class="dots" aria-hidden="true"></div>
+          <figcaption class="caption">Tap the image (or press →) to see more.</figcaption>
+        </figure>
+
+        <!-- Intro card -->
+        <aside class="intro-card">
+          <h2>Nice to meet you 👋</h2>
+          <p>
+            I’m <strong>Aditya Somaiya</strong> — full-stack & backend engineer who loves building reliable services and clean UIs.
+            MS CS @ Stony Brook (GPA ~3.97).
+          </p>
+          <ul>
+            <li><strong>Her Heard</strong>: WebSocket global chat, GA4 funnels, MongoDB indexing/caching.</li>
+            <li><strong>Marriott RMS @ LTIMindtree</strong>: Spring Boot microservices, Postgres, <code>/inventory/balance</code>, timezone-safe APIs.</li>
+            <li><strong>Projects</strong>: LLM/ML smart-home tooling, dashboards, Java coursework, CV gesture mouse control.</li>
+          </ul>
+          <div class="intro-cta">
+            <a class="btn" href="#projects">See Projects</a>
+            <a class="btn secondary" href="#contact">Contact</a>
+          </div>
+        </aside>
+      </div>
+    </section>
   </header>
 
   <main class="container">
+    <!-- Projects (Featured + All from GitHub API) -->
     <section id="projects" class="reveal">
-      <h2>Featured Projects</h2>
-      <div class="grid">
-        <article class="card">
-          <h3>SmartHome Savant — LLM + ML</h3>
-          <p>Energy anomaly detection with LightGBM + SHAP, multimodal inputs, and LLM-assisted routines. Includes FAISS, forecasting, and explainability artifacts.</p>
-          <p>
-            <span class="tag">Python</span><span class="tag">LightGBM</span><span class="tag">SHAP</span><span class="tag">FAISS</span>
-          </p>
-          <div class="meta">
-            <a href="https://github.com/aditya-somaiya/SmartHome-Savant-LLM" target="_blank" rel="noreferrer">Code</a>
-          </div>
-        </article>
+      <h2>Projects</h2>
 
-        <article class="card">
-          <h3>World Happiness Dashboard</h3>
-          <p>Client/server dashboard experiment—data exploration and simple visualizations.</p>
-          <p>
-            <span class="tag">JS</span><span class="tag">Node</span>
-          </p>
-          <div class="meta">
-            <a href="https://github.com/aditya-somaiya/world-happiness-dashboard" target="_blank" rel="noreferrer">Code</a>
-          </div>
-        </article>
+      <!-- Featured (curated) -->
+      <h3 style="margin-top:0.5rem">Featured</h3>
+      <div id="featuredGrid" class="projects-grid" aria-live="polite"></div>
 
-        <article class="card">
-          <h3>RestaurantFinder</h3>
-          <p>Course project in Java: basic search, filters, and data ingestion pipeline.</p>
-          <p>
-            <span class="tag">Java</span>
-          </p>
-          <div class="meta">
-            <a href="https://github.com/aditya-somaiya/RestaurantFinder" target="_blank" rel="noreferrer">Code</a>
-          </div>
-        </article>
+      <!-- All repositories (auto) -->
+      <h3 style="margin-top:2rem">All repositories</h3>
+      <div id="repoGrid" class="projects-grid" aria-live="polite"></div>
 
-        <article class="card">
-          <h3>Mouse Control via Hand Gestures</h3>
-          <p>Computer-vision based gesture control prototype.</p>
-          <p>
-            <span class="tag">Python</span><span class="tag">OpenCV</span>
-          </p>
-          <div class="meta">
-            <a href="https://github.com/aditya-somaiya/Mouse-Control-using-Hand-Gestures" target="_blank" rel="noreferrer">Code</a>
-          </div>
-        </article>
-
-        <!-- Keep a link to the rest -->
-        <article class="card">
-          <h3>See all repositories</h3>
-          <p>More experiments, coursework, and utilities.</p>
-          <div class="meta">
-            <a href="https://github.com/aditya-somaiya?tab=repositories" target="_blank" rel="noreferrer">Browse all</a>
-          </div>
-        </article>
-      </div>
+      <p style="margin-top:1rem">
+        <a href="https://github.com/aditya-somaiya?tab=repositories" target="_blank" rel="noreferrer">Browse everything on GitHub →</a>
+      </p>
     </section>
 
     <section id="experience" class="reveal">
@@ -157,22 +128,21 @@
     </section>
 
     <section id="contact" class="reveal">
-  <h2>Contact</h2>
-  <p>Say hi at <a href="mailto:adisomaiya.sa@gmail.com">adisomaiya.sa@gmail.com</a> or use the form:</p>
-  
-  <form id="contactForm" action="https://formspree.io/f/mnqewxyz" method="POST">
-    <label>Your email <input type="email" name="email" required></label>
-    <label>Message <textarea name="message" rows="5" required></textarea></label>
-    <button type="submit" class="btn">Send</button>
-  </form>
+      <h2>Contact</h2>
+      <p>Say hi at <a href="mailto:adisomaiya.sa@gmail.com">adisomaiya.sa@gmail.com</a> or use the form:</p>
 
-  <!-- confirmation box (hidden until submit) -->
-  <div id="formSuccess" style="display:none; margin-top:1rem;">
-    <p>✅ Your message has been sent successfully!</p>
-    <button id="sendAgain" class="btn secondary">Send another message</button>
-  </div>
-</section>
+      <form id="contactForm" action="https://formspree.io/f/mnqewxyz" method="POST">
+        <label>Your email <input type="email" name="email" required></label>
+        <label>Message <textarea name="message" rows="5" required></textarea></label>
+        <button type="submit" class="btn">Send</button>
+      </form>
 
+      <!-- confirmation box (hidden until submit) -->
+      <div id="formSuccess" style="display:none; margin-top:1rem;">
+        <p>✅ Your message has been sent successfully!</p>
+        <button id="sendAgain" class="btn secondary">Send another message</button>
+      </div>
+    </section>
   </main>
 
   <footer class="container">
@@ -180,64 +150,5 @@
   </footer>
 
   <script src="assets/js/main.js"></script>
-  <script>
-    // theme toggle (persists in localStorage)
-    const root = document.documentElement;
-    const key = 'theme';
-    const saved = localStorage.getItem(key);
-    if (saved === 'light') root.classList.add('light');
-    document.getElementById('themeToggle').onclick = () => {
-      root.classList.toggle('light');
-      localStorage.setItem(key, root.classList.contains('light') ? 'light' : 'dark');
-    };
-
-    // copy email
-    const copyBtn = document.getElementById('copyEmail');
-    copyBtn.addEventListener('click', async () => {
-      await navigator.clipboard.writeText('adisomaiya.sa@gmail.com');
-      copyBtn.textContent = 'Copied!';
-      setTimeout(() => copyBtn.textContent = 'Copy', 1200);
-    });
-
-    // reveal on scroll
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
-    }, { threshold: .08 });
-    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
-  </script>
-  <script>
-  const form = document.getElementById('contactForm');
-  const successBox = document.getElementById('formSuccess');
-  const sendAgainBtn = document.getElementById('sendAgain');
-
-  form.addEventListener('submit', async (e) => {
-    e.preventDefault(); // prevent default page reload
-    const data = new FormData(form);
-
-    try {
-      const res = await fetch(form.action, {
-        method: form.method,
-        body: data,
-        headers: { 'Accept': 'application/json' }
-      });
-
-      if (res.ok) {
-        form.style.display = 'none';
-        successBox.style.display = 'block';
-        form.reset();
-      } else {
-        alert("Oops, something went wrong. Please try again later.");
-      }
-    } catch (err) {
-      alert("Network error. Please check your connection.");
-    }
-  });
-
-  sendAgainBtn.addEventListener('click', () => {
-    successBox.style.display = 'none';
-    form.style.display = 'block';
-  });
-</script>
-
 </body>
 </html>
